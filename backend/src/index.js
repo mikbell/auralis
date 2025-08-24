@@ -4,6 +4,7 @@ import { connectDB } from "./lib/db.js";
 import { clerkMiddleware } from "@clerk/express";
 import fileUpload from "express-fileupload";
 import path from "path";
+import cors from "cors";
 
 import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
@@ -11,12 +12,17 @@ import adminRoutes from "./routes/admin.routes.js";
 import songRoutes from "./routes/song.routes.js";
 import albumRoutes from "./routes/album.routes.js";
 import statRoutes from "./routes/stat.routes.js";
+import { createServer } from "http";
+import { initializeSocket } from "./lib/socket.js";
 
 dotenv.config();
 
 const app = express();
 const __dirname = path.resolve();
 const PORT = process.env.PORT || 5000;
+
+const httpServer = createServer(app);
+initializeSocket(httpServer)
 
 app.use(
 	cors({
@@ -53,7 +59,7 @@ app.use((err, req, res, next) => {
 	});
 });
 
-app.listen(PORT, (req, res) => {
+httpServer.listen(PORT, (req, res) => {
 	console.log("Applicazione in ascolto sul port", PORT);
 	connectDB();
 });

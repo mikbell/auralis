@@ -19,6 +19,10 @@ const songSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		duration: {
+			type: Number,
+			requirede: true
+		},
 		albumId: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Album",
@@ -28,6 +32,4 @@ const songSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
-const Song = mongoose.model("Song", songSchema);
-
-export default Song;
+export const Song = mongoose.model("Song", songSchema);

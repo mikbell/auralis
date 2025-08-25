@@ -14,6 +14,9 @@ import { validatePagination, validateObjectId } from "../middlewares/validation.
 
 const router = express.Router();
 
+// Admin routes (must come before param routes)
+router.get("/", protectRoute, requireAdmin, ...validatePagination, getAllSongs);
+
 // Public routes
 router.get("/search", searchMusic);
 router.get("/search/quick", quickSearch);
@@ -22,8 +25,5 @@ router.get("/made-for-you", getMadeForYouSongs);
 router.get("/trending", getTrendingSongs);
 router.get("/:id", ...validateObjectId('id'), getSongById);
 router.post("/:id/play", ...validateObjectId('id'), incrementPlayCount);
-
-// Admin routes
-router.get("/", protectRoute, requireAdmin, validatePagination, getAllSongs);
 
 export default router;

@@ -38,5 +38,9 @@ export default defineConfig({
 			}
 		}
 	},
-	preview: { host: "auralis-vqck.onrender.com"}
+	preview: { 
+		allowedHosts: ["auralis-vqck.onrender.com"],
+		port: 4173,
+		host: true
+	}
 });

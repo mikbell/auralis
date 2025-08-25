@@ -20,8 +20,8 @@ router.get("/search/quick", quickSearch);
 router.get("/featured", getFeaturedSongs);
 router.get("/made-for-you", getMadeForYouSongs);
 router.get("/trending", getTrendingSongs);
-router.get("/:id", validateObjectId('id'), getSongById);
-router.post("/:id/play", validateObjectId('id'), incrementPlayCount);
+router.get("/:id", ...validateObjectId('id'), getSongById);
+router.post("/:id/play", ...validateObjectId('id'), incrementPlayCount);
 
 // Admin routes
 router.get("/", protectRoute, requireAdmin, validatePagination, getAllSongs);

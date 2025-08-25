@@ -6,6 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "seed": "node src/scripts/seedDatabase.js --force",
+    "seed:check": "node src/scripts/seedDatabase.js",
+    "test:api": "node src/scripts/testApi.js",
+    "test:admin": "node src/scripts/testAdminAccess.js",
+    "test:chat": "node src/scripts/testChat.js",
+    "health": "node src/scripts/healthCheck.js",
+    "db:check": "node src/scripts/testConnection.js",
+    "db:clean-indexes": "node src/scripts/dropIndexes.js",
     "seed:songs": "node src/seeds/songs.js",
     "seed:albums": "node src/seeds/albums.js"
   },
@@ -16,15 +25,22 @@
   "dependencies": {
     "@clerk/express": "^1.7.24",
     "cloudinary": "^2.7.0",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "express-fileupload": "^1.5.2",
+    "express-rate-limit": "^8.0.1",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
     "mongodb": "^6.18.0",
     "mongoose": "^8.18.0",
+    "music-metadata": "^11.8.3",
+    "node-cron": "^4.2.1",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
+    "node-fetch": "^3.3.2",
     "nodemon": "^3.1.10"
   }
 }

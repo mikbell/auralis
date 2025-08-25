@@ -1,0 +1,210 @@
+/* ========================================
+   RESPONSIVE UTILITY CLASSES
+   Custom utilities per migliorare la responsiveness
+   ======================================== */
+
+/* Mobile-first breakpoints personalizzati */
+@media (max-width: 320px) {
+  .mobile-xs-hidden { display: none !important; }
+  .mobile-xs-full { width: 100% !important; }
+  .mobile-xs-text-xs { font-size: 0.75rem !important; }
+  .mobile-xs-p-2 { padding: 0.5rem !important; }
+  .mobile-xs-m-1 { margin: 0.25rem !important; }
+}
+
+@media (max-width: 480px) {
+  .mobile-sm-hidden { display: none !important; }
+  .mobile-sm-full { width: 100% !important; }
+  .mobile-sm-stack { flex-direction: column !important; }
+  .mobile-sm-center { text-align: center !important; }
+}
+
+/* Tablet breakpoints */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tablet-only { display: block !important; }
+  .tablet-hidden { display: none !important; }
+  .tablet-grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
+  .tablet-grid-3 { grid-template-columns: repeat(3, 1fr) !important; }
+}
+
+/* Desktop large */
+@media (min-width: 1280px) {
+  .desktop-lg-grid-5 { grid-template-columns: repeat(5, 1fr) !important; }
+  .desktop-lg-grid-6 { grid-template-columns: repeat(6, 1fr) !important; }
+}
+
+/* ========================================
+   COMPONENT-SPECIFIC RESPONSIVE CLASSES
+   ======================================== */
+
+/* Audio Player Responsive */
+.audio-player-mobile {
+  @apply fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-md border-t border-white/10;
+}
+
+.audio-player-desktop {
+  @apply fixed bottom-4 left-4 right-4 glass-player rounded-3xl border border-border/20;
+}
+
+/* Sidebar Responsive */
+.sidebar-mobile {
+  @apply fixed left-0 top-0 h-full w-80 bg-zinc-900/95 backdrop-blur-md z-50 transform transition-transform duration-300;
+}
+
+.sidebar-desktop {
+  @apply h-full glass-sidebar rounded-3xl overflow-hidden;
+}
+
+/* Card Grid Responsive */
+.card-grid-responsive {
+  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-4;
+}
+
+/* Modal Responsive */
+.modal-responsive {
+  @apply max-h-[90vh] sm:max-h-[80vh] overflow-auto mx-4 sm:mx-0 max-w-[95vw] sm:max-w-[500px] p-4 sm:p-6;
+}
+
+/* ========================================
+   LAYOUT HELPERS
+   ======================================== */
+
+/* Safe area per mobile con notch */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Touch-friendly sizes */
+.touch-target {
+  @apply min-h-[44px] min-w-[44px];
+}
+
+.touch-target-lg {
+  @apply min-h-[48px] min-w-[48px];
+}
+
+/* ========================================
+   ACCESSIBILITY RESPONSIVE
+   ======================================== */
+
+/* Riduce le animazioni per utenti con preferenze ridotte */
+@media (prefers-reduced-motion: reduce) {
+  .respect-motion-preference {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   TYPOGRAPHY RESPONSIVE
+   ======================================== */
+
+/* Scale fluida del testo */
+.text-responsive-xs {
+  @apply text-xs sm:text-sm;
+}
+
+.text-responsive-sm {
+  @apply text-sm sm:text-base;
+}
+
+.text-responsive-base {
+  @apply text-base sm:text-lg;
+}
+
+.text-responsive-lg {
+  @apply text-lg sm:text-xl md:text-2xl;
+}
+
+.text-responsive-xl {
+  @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+}
+
+.text-responsive-2xl {
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+}
+
+/* ========================================
+   SPACING RESPONSIVE
+   ======================================== */
+
+.spacing-responsive-sm {
+  @apply p-2 sm:p-4;
+}
+
+.spacing-responsive-md {
+  @apply p-3 sm:p-6;
+}
+
+.spacing-responsive-lg {
+  @apply p-4 sm:p-8;
+}
+
+.gap-responsive-sm {
+  @apply gap-2 sm:gap-4;
+}
+
+.gap-responsive-md {
+  @apply gap-3 sm:gap-6;
+}
+
+/* ========================================
+   INTERACTION STATES
+   ======================================== */
+
+/* Hover states solo per dispositivi non touch */
+@media (hover: hover) and (pointer: fine) {
+  .hover-only:hover {
+    @apply scale-105 shadow-lg;
+  }
+}
+
+/* Active states per touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .touch-active:active {
+    @apply scale-95 opacity-80;
+  }
+}
+
+/* ========================================
+   UTILITY COMBINATIONS
+   ======================================== */
+
+/* Flex responsive common patterns */
+.flex-responsive-center {
+  @apply flex flex-col sm:flex-row items-center justify-center sm:justify-between;
+}
+
+.flex-responsive-start {
+  @apply flex flex-col sm:flex-row items-start sm:items-center;
+}
+
+/* Grid responsive common patterns */
+.grid-responsive-auto {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+.grid-responsive-fill {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6;
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Contenimento layout per performance */
+.contain-layout {
+  contain: layout style paint;
+}
+
+/* Ottimizzazioni GPU */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}

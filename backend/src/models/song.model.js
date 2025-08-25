@@ -13,7 +13,6 @@ const songSchema = new mongoose.Schema(
 		imageUrl: {
 			type: String,
 			required: true,
-			unique: true,
 		},
 		audioUrl: {
 			type: String,
@@ -21,7 +20,27 @@ const songSchema = new mongoose.Schema(
 		},
 		duration: {
 			type: Number,
-			requirede: true
+			required: true,
+			min: [1, 'Duration must be at least 1 second']
+		},
+		genre: {
+			type: String,
+			required: false,
+			enum: ['pop', 'rock', 'hip-hop', 'jazz', 'classical', 'electronic', 'country', 'r&b', 'indie', 'folk', 'other'],
+			default: 'other'
+		},
+		playCount: {
+			type: Number,
+			default: 0,
+			min: 0
+		},
+		likedBy: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User'
+		}],
+		isActive: {
+			type: Boolean,
+			default: true
 		},
 		albumId: {
 			type: mongoose.Schema.Types.ObjectId,

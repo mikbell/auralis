@@ -1,27 +1,23 @@
 import { useAuth } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
-import { axiosInstance } from "../lib/axios.ts";
+import { configureAxiosAuth } from "../lib/axios.ts";
 import { Loader } from "lucide-react";
 
-const updateApiToken = (token: string | null) => {
-	if (token) {
-		axiosInstance.defaults.headers.common["Authorization"] = `Beared ${token}`;
-	} else {
-		delete axiosInstance.defaults.headers.common["Authorization"];
-	}
-};
-
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-	const { getToken } = useAuth();
+	const { getToken, isLoaded } = useAuth();
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const initAuth = async () => {
 			try {
-				const token = await getToken();
-				updateApiToken(token);
+				if (isLoaded && getToken) {
+					// Configure axios to use Clerk's getToken function
+					configureAxiosAuth(getToken);
+					console.log('✅ Auth provider initialized');
+				} else {
+					console.log('⚠️ Clerk not yet loaded or getToken not available');
+				}
 			} catch (error) {
-				updateApiToken(null);
 				console.log("Errore in AuthProvider", error);
 			} finally {
 				setLoading(false);
@@ -29,7 +25,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 		};
 
 		initAuth();
-	}, [getToken]);
+	}, [getToken, isLoaded]);
 
 	if (loading) {
 		return (

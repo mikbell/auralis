@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import fs from "fs";
 import { connectDB } from "./lib/db.js";
 import { clerkMiddleware } from "@clerk/express";
 import fileUpload from "express-fileupload";
@@ -95,7 +96,7 @@ app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statRoutes);
 
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "../frontend/dist")));
+	app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 	app.get("*", (req, res) => {
 		res.sendFile(path.resolve(__dirname, "../../frontend/dist/index.html"));
 	});

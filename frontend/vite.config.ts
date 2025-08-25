@@ -40,7 +40,7 @@ export default defineConfig({
 	},
 	preview: { 
 		allowedHosts: ["auralis-vqck.onrender.com"],
-		port: 4173,
+		port: 5000,
 		host: true
 	}
 });

@@ -10,7 +10,7 @@
     "dev:frontend": "cd frontend && npm run dev",
     "build": "npm run build:backend && npm run build:frontend",
     "build:backend": "cd backend && npm ci --only=production",
-    "build:frontend": "cd frontend && npm ci && npm run build",
+    "build:frontend": "cd frontend && npm install && npm run build:render",
     "start": "cd backend && npm start",
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend && npm run preview",

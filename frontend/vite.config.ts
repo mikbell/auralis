@@ -17,7 +17,18 @@ export default defineConfig({
 		sourcemap: false,
 		minify: "terser",
 		chunkSizeWarningLimit: 1600,
+		// Configurazioni specifiche per Render
+		target: 'esnext',
+		commonjsOptions: {
+			transformMixedEsModules: true
+		},
 		rollupOptions: {
+			// Assicura che tutte le dipendenze platform-specific siano gestite correttamente
+			external: (id) => {
+				// Non esternalizzare le dipendenze Rollup platform-specific
+				if (id.includes('@rollup/rollup-')) return false;
+				return false;
+			},
 			output: {
 				manualChunks: {
 					vendor: ["react", "react-dom"],

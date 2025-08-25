@@ -37,5 +37,6 @@ export default defineConfig({
 				secure: false
 			}
 		}
-	}
+	},
+	preview: { host: "auralis-vqck.onrender.com"}
 });

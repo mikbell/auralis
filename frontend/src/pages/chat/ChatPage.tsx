@@ -9,10 +9,9 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import MessageInput from "./components/MessageInput";
 
 const formatTime = (date: string) => {
-	return new Date(date).toLocaleTimeString("en-US", {
+	return new Date(date).toLocaleTimeString("it-IT", {
 		hour: "2-digit",
 		minute: "2-digit",
-		hour12: true,
 	});
 };
 
@@ -92,10 +91,10 @@ export default ChatPage;
 
 const NoConversationPlaceholder = () => (
 	<div className='flex flex-col items-center justify-center h-full space-y-6'>
-		<img src='/spotify.png' alt='Spotify' className='size-16 animate-bounce' />
+		<img src='/auralis.svg' alt='Spotify' className='size-16 animate-bounce' />
 		<div className='text-center'>
-			<h3 className='text-zinc-300 text-lg font-medium mb-1'>No conversation selected</h3>
-			<p className='text-zinc-500 text-sm'>Choose a friend to start chatting</p>
+			<h3 className='text-zinc-300 text-lg font-medium mb-1'>Nessuna conversazione selezionata</h3>
+			<p className='text-zinc-500 text-sm'>Scegli un amico per iniziare a chattare</p>
 		</div>
 	</div>
 );

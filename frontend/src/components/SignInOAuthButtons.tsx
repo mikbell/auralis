@@ -17,9 +17,9 @@ const SignInOAuthButtons = () => {
 	};
 
 	return (
-		<Button onClick={signInWithGoogle} variant={"secondary"} className='w-full text-white border-zinc-200 h-11'>
+		<Button onClick={signInWithGoogle} variant={"secondary"} className='text-white border-zinc-200 h-11 cursor-pointer'>
 			<img src='/google.png' alt='Google' className='size-5' />
-			Continue with Google
+			Continua con Google
 		</Button>
 	);
 };

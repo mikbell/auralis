@@ -20,6 +20,13 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        
+        // Custom variants for music app
+        play: "bg-green-500 text-white hover:bg-green-600 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105",
+        music: "bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 transition-opacity shadow-lg",
+        equalizer: "bg-orange-500/10 text-orange-500 hover:bg-orange-500/20 border border-orange-500/20 backdrop-blur-sm",
+        spotify: "bg-green-600 text-white hover:bg-green-700 transition-colors font-semibold",
+        glassmorphism: "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

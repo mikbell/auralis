@@ -20,7 +20,6 @@ interface NewSong {
 	title: string;
 	artist: string;
 	album: string;
-	duration: string;
 }
 
 const AddSongDialog = () => {
@@ -32,7 +31,6 @@ const AddSongDialog = () => {
 		title: "",
 		artist: "",
 		album: "",
-		duration: "0",
 	});
 
 	const [files, setFiles] = useState<{ audio: File | null; image: File | null }>({
@@ -55,7 +53,7 @@ const AddSongDialog = () => {
 
 			formData.append("title", newSong.title);
 			formData.append("artist", newSong.artist);
-			formData.append("duration", newSong.duration);
+			// Duration viene ora estratta automaticamente dal backend
 			if (newSong.album && newSong.album !== "none") {
 				formData.append("albumId", newSong.album);
 			}
@@ -73,7 +71,6 @@ const AddSongDialog = () => {
 				title: "",
 				artist: "",
 				album: "",
-				duration: "0",
 			});
 
 			setFiles({
@@ -97,13 +94,13 @@ const AddSongDialog = () => {
 				</Button>
 			</DialogTrigger>
 
-			<DialogContent className='bg-zinc-900 border-zinc-700 max-h-[80vh] overflow-auto'>
+			<DialogContent className='bg-zinc-900 border-zinc-700 max-h-[90vh] sm:max-h-[80vh] overflow-auto mx-4 sm:mx-0 max-w-[95vw] sm:max-w-[500px] p-4 sm:p-6'>
 				<DialogHeader>
-					<DialogTitle>Add New Song</DialogTitle>
-					<DialogDescription>Add a new song to your music library</DialogDescription>
+					<DialogTitle className='text-lg sm:text-xl'>Add New Song</DialogTitle>
+					<DialogDescription className='text-sm sm:text-base'>Add a new song to your music library</DialogDescription>
 				</DialogHeader>
 
-				<div className='space-y-4 py-4'>
+				<div className='space-y-3 sm:space-y-4 py-4'>
 					<input
 						type='file'
 						accept='audio/*'
@@ -174,15 +171,15 @@ const AddSongDialog = () => {
 						/>
 					</div>
 
-					<div className='space-y-2'>
-						<label className='text-sm font-medium'>Duration (seconds)</label>
-						<Input
-							type='number'
-							min='0'
-							value={newSong.duration}
-							onChange={(e) => setNewSong({ ...newSong, duration: e.target.value || "0" })}
-							className='bg-zinc-800 border-zinc-700'
-						/>
+					{/* Duration Extraction Notice */}
+					<div className='bg-emerald-900/20 border border-emerald-500/30 rounded-lg p-3'>
+						<div className='flex items-center gap-2 text-emerald-400'>
+							<div className='w-2 h-2 bg-emerald-400 rounded-full'></div>
+							<span className='text-sm font-medium'>Duration Auto-Detection</span>
+						</div>
+						<p className='text-xs text-emerald-300/80 mt-1'>
+							La durata della canzone verrà estratta automaticamente dal file audio caricato.
+						</p>
 					</div>
 
 					<div className='space-y-2'>
@@ -206,12 +203,21 @@ const AddSongDialog = () => {
 					</div>
 				</div>
 
-				<DialogFooter>
-					<Button variant='outline' onClick={() => setSongDialogOpen(false)} disabled={isLoading}>
-						Cancel
+				<DialogFooter className='flex-col sm:flex-row gap-2 sm:gap-0'>
+					<Button 
+						variant='outline' 
+						onClick={() => setSongDialogOpen(false)} 
+						disabled={isLoading}
+						className='w-full sm:w-auto order-2 sm:order-1'
+					>
+						Annulla
 					</Button>
-					<Button onClick={handleSubmit} disabled={isLoading}>
-						{isLoading ? "Uploading..." : "Add Song"}
+					<Button 
+						onClick={handleSubmit} 
+						disabled={isLoading}
+						className='w-full sm:w-auto order-1 sm:order-2'
+					>
+						{isLoading ? "Caricamento..." : "Aggiungi Canzone"}
 					</Button>
 				</DialogFooter>
 			</DialogContent>

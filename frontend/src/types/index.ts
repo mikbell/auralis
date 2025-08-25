@@ -8,6 +8,10 @@ export interface Song {
 	duration: number;
 	createdAt: string;
 	updatedAt: string;
+	// Optional populated album data
+	album?: { title: string; _id: string };
+	// Optional quality information
+	quality?: string;
 }
 
 export interface Album {

@@ -11,4 +11,31 @@ export default defineConfig({
 			"@": path.resolve(__dirname, "./src"),
 		},
 	},
+	build: {
+		outDir: "dist",
+		assetsDir: "assets",
+		sourcemap: false,
+		minify: "terser",
+		chunkSizeWarningLimit: 1600,
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					vendor: ["react", "react-dom"],
+					router: ["react-router-dom"],
+					ui: ["@radix-ui/react-accordion", "@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu"]
+				}
+			}
+		}
+	},
+	server: {
+		port: 5173,
+		host: true,
+		proxy: {
+			"/api": {
+				target: process.env.VITE_API_URL || "http://localhost:5000",
+				changeOrigin: true,
+				secure: false
+			}
+		}
+	}
 });

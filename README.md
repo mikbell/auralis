@@ -143,7 +143,24 @@ npm run seed:songs
 npm run seed:albums
 ```
 
-## 🐳 Docker Deployment
+## 🚀 Deploy su Render
+
+Il progetto è configurato per il deploy automatico su Render tramite Blueprint.
+
+### Quick Deploy
+1. **Configura le variabili d'ambiente** (vedi `.env.example`)
+2. **Push su GitHub**: `git push origin main`
+3. **Crea Blueprint su Render** - rileverà automaticamente `render.yaml`
+4. **Inserisci le variabili d'ambiente** su Render
+
+### Verifica Pre-Deploy
+```bash
+npm run check-deploy
+```
+
+📖 **Guida completa**: Leggi `DEPLOY.md` per istruzioni dettagliate
+
+## 🐳 Docker Deployment (Locale)
 
 ### Using Docker Compose (Recommended)
 ```bash

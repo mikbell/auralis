@@ -1,0 +1,48 @@
+{
+  "name": "auralis",
+  "version": "1.0.0",
+  "description": "Auralis - Modern Music Streaming Platform",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm ci --only=production",
+    "build:frontend": "cd frontend && npm ci && npm run build",
+    "start": "cd backend && npm start",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run preview",
+    "install:all": "npm ci && cd backend && npm ci && cd ../frontend && npm ci",
+    "clean": "rm -rf node_modules backend/node_modules frontend/node_modules",
+    "health": "cd backend && npm run health",
+    "test": "cd backend && npm test",
+    "seed": "cd backend && npm run seed",
+    "lint": "cd frontend && npm run lint",
+    "format": "prettier --write .",
+    "check-deploy": "node check-deploy-ready.js"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "music",
+    "streaming",
+    "react",
+    "node",
+    "mongodb",
+    "express"
+  ],
+  "author": "Auralis Team",
+  "license": "MIT"
+}

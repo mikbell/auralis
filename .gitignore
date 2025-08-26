@@ -26,3 +26,31 @@ dist-ssr
 .env
 .env.local
 .env.example
+
+# Temporary files and test artifacts
+backend/temp/
+backend/test-*.js
+backend/validate-*.js
+backend/debug-*.js
+*.md.backup
+render.yaml
+
+# Build artifacts
+frontend/dist/
+backend/dist/
+
+# Documentation duplicates
+backend/*.md
+!backend/README.md
+frontend/*.md
+!frontend/README.md
+
+# Docker files (if not using Docker)
+Dockerfile
+docker-compose.yml
+nginx.conf
+
+# Debug and deployment scripts
+check-deploy-*.js
+DEBUG_*.md
+DEPLOY.md

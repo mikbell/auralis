@@ -95,11 +95,39 @@ app.use("/api/songs", songRoutes);
 app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statRoutes);
 
-if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "../../frontend/dist")));
-	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "../../frontend/dist/index.html"));
+// Temporary root route for backend-only deployment
+app.get("/", (req, res) => {
+	res.json({
+		success: true,
+		message: "Auralis Backend API is running",
+		version: "1.0.0",
+		environment: process.env.NODE_ENV || "development",
+		api: {
+			health: "/api/health",
+			auth: "/api/auth",
+			songs: "/api/songs",
+			albums: "/api/albums",
+			stats: "/api/stats",
+			users: "/api/users",
+			admin: "/api/admin"
+		},
+		timestamp: new Date().toISOString()
 	});
+});
+
+// Serve frontend in production (when available)
+if (process.env.NODE_ENV === "production" && process.env.SERVE_FRONTEND === "true") {
+	try {
+		const frontendPath = path.join(__dirname, "../../frontend/dist");
+		if (fs.existsSync(frontendPath)) {
+			app.use(express.static(frontendPath));
+			app.get("*", (req, res) => {
+				res.sendFile(path.resolve(frontendPath, "index.html"));
+			});
+		}
+	} catch (error) {
+		console.log("Frontend files not found, serving API only");
+	}
 }
 
 app.use((err, req, res, next) => {
